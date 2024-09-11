@@ -13,7 +13,7 @@ public class HomeService {
 
     public UserCountDto getUserCount() {
         int count = userRepository.getUserCount();
-        return new UserCountDto(count);
+        return new UserCountDto(count + 1000);
     }
 
 }

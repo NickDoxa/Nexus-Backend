@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/home")
+@CrossOrigin(origins = "*")
 public class HomeResource {
 
     private final HomeService homeService;
 
-    @CrossOrigin
     @GetMapping("/user-count")
     public ResponseEntity<UserCountDto> getUserCount() {
         return ResponseEntity.ok().body(homeService.getUserCount());

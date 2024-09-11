@@ -1,37 +1,30 @@
 package net.oasisgames.nexus.security;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-
-        http.csrf(AbstractHttpConfigurer::disable);
-        http.authorizeHttpRequests(requests -> requests.anyRequest().authenticated());
-        http.formLogin(Customizer.withDefaults());
-        http.logout(Customizer.withDefaults());
-        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.cors(withDefaults());
+        http.authorizeHttpRequests((requests) -> {
+            requests.requestMatchers("api/home/*").permitAll();
+            requests.requestMatchers("api/account/*").authenticated();
+            requests.requestMatchers("api/dev/*").authenticated();
+        });
+        http.oauth2ResourceServer(oauth2 -> oauth2
+                .jwt(withDefaults()));
         return http.build();
-    }
-
-    @Bean
-    public UserDetailsService getUserDetails() {
-        //TODO
-
-        return new InMemoryUserDetailsManager();
     }
 
 }
