@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration(proxyBeanMethods = false)
@@ -20,10 +21,12 @@ public class SecurityConfig {
         http.authorizeHttpRequests((requests) -> {
             requests.requestMatchers("api/home/*").permitAll();
             requests.requestMatchers("api/account/*").authenticated();
+            requests.requestMatchers("api/account/*/*").authenticated();
             requests.requestMatchers("api/dev/*").authenticated();
         });
         http.oauth2ResourceServer(oauth2 -> oauth2
-                .jwt(withDefaults()));
+                .jwt(withDefaults()))
+                .cors(withDefaults());
         return http.build();
     }
 
