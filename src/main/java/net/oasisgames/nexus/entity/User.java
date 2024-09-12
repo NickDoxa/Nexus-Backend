@@ -22,4 +22,12 @@ public class User {
         return "USER: " + username + "\nEMAIL: " + email + "\nPICTURE: " + picture + "\nAUTH ID: " + authId;
     }
 
+    public User update(User user) {
+        this.username = user.getUsername() == null ? this.getUsername() : user.getUsername();
+        this.email = user.getEmail() == null ? this.getEmail() : user.getEmail();
+        this.picture = user.getPicture() == null ? this.getPicture() : user.getPicture();
+        this.authId = user.getAuthId() == null ? this.getAuthId() : user.getAuthId();
+        return this;
+    }
+
 }

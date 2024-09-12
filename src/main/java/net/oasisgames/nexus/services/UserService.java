@@ -21,15 +21,25 @@ public class UserService {
         return userMapper.getUserDtoFromUser(userRepository.saveAndFlush(user));
     }
 
+    public UserDto editExistingUser(UserDto userDto) {
+        assert !doesUserExist(userDto.getAuthId());
+        User user = userRepository.findById(userDto.getAuthId()).orElse(null);
+        assert user != null;
+        User updated = userRepository.saveAndFlush(user.update(userMapper.getUserFromUserDto(userDto)));
+        return userMapper.getUserDtoFromUser(updated);
+    }
+
     public UserDto userExists(String id) {
         User user = userRepository.findById(id).orElse(new User());
         return userMapper.getUserDtoFromUser(user);
     }
 
+    private boolean doesUserExist(String id) {
+        return userRepository.findById(id).isPresent();
+    }
+
     public UserDto getUserById(String id) {
         return userMapper.getUserDtoFromUser(userRepository.findById(id).orElse(null));
     }
-
-
 
 }

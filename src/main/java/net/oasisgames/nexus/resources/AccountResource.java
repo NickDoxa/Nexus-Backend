@@ -24,4 +24,9 @@ public class AccountResource {
         return ResponseEntity.ok().body(userService.createNewUser(user));
     }
 
+    @PatchMapping("/edit")
+    public ResponseEntity<UserDto> edit(@RequestBody UserDto user) {
+        return ResponseEntity.ok().body(userService.editExistingUser(user));
+    }
+
 }
