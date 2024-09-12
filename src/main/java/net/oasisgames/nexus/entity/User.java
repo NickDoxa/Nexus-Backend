@@ -9,18 +9,17 @@ import lombok.Data;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private String authId;
 
     private String username;
 
-    private String password;
+    private String email;
 
-    private Boolean admin;
+    private String picture;
 
     @Override
     public String toString() {
-        return "USER: " + username + ", PASSWORD: " + password + ", ADMIN: " + admin + ", ID: " + id;
+        return "USER: " + username + "\nEMAIL: " + email + "\nPICTURE: " + picture + "\nAUTH ID: " + authId;
     }
 
 }
