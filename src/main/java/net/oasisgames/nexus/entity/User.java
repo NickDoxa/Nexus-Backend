@@ -17,9 +17,13 @@ public class User {
 
     private String picture;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private PlayerCard card;
+
     @Override
     public String toString() {
-        return "USER: " + username + "\nEMAIL: " + email + "\nPICTURE: " + picture + "\nAUTH ID: " + authId;
+        return "USER: " + username + "\nEMAIL: " + email + "\nPICTURE: " + picture + "\nAUTH ID: " + authId +
+                "\nCARD: " + card.toString();
     }
 
     public User update(User user) {
@@ -27,6 +31,7 @@ public class User {
         this.email = user.getEmail() == null ? this.getEmail() : user.getEmail();
         this.picture = user.getPicture() == null ? this.getPicture() : user.getPicture();
         this.authId = user.getAuthId() == null ? this.getAuthId() : user.getAuthId();
+        this.card = this.card.update(user.getCard());
         return this;
     }
 
