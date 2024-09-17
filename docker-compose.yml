@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    networks:
+      - nexus-network
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: nexuspg
+      POSTGRES_PASSWORD: starwars13
+      POSTGRES_DB: nexus
+    ports:
+      - "5432:5432"
+    networks:
+      - nexus-network
+    volumes:
+      - postgres-nexus-data:/var/lib/postgresql/data
+networks:
+  nexus-network:
+    driver: bridge
+volumes:
+  postgres-nexus-data:

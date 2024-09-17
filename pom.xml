@@ -10,7 +10,7 @@
     </parent>
     <groupId>net.oasisgames</groupId>
     <artifactId>nexus-backend</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>nexus-backend</name>
     <description>nexus-backend</description>
     <url/>
@@ -75,11 +75,6 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
             <version>1.6.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
