@@ -12,6 +12,7 @@ public class UserDto {
     private String username;
     private String email;
     private String picture;
+    private Boolean useFilePicture;
     private PlayerCard card;
 
 }

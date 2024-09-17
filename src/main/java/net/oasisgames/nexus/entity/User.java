@@ -17,6 +17,9 @@ public class User {
 
     private String picture;
 
+    @Column(columnDefinition = "boolean default false")
+    private Boolean useFilePicture;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private PlayerCard card;
 
