@@ -3,7 +3,6 @@ package net.oasisgames.nexus.services;
 import lombok.RequiredArgsConstructor;
 import net.oasisgames.nexus.dto.PlayerCardDto;
 import net.oasisgames.nexus.dto.UserDto;
-import net.oasisgames.nexus.entity.PlayerCard;
 import net.oasisgames.nexus.entity.User;
 import net.oasisgames.nexus.mapper.PlayerCardMapper;
 import net.oasisgames.nexus.mapper.UserMapper;
