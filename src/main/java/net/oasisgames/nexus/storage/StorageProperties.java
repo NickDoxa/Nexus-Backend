@@ -12,6 +12,6 @@ public class StorageProperties {
     /**
      * Folder location for storing files
      */
-    private String location = "images";
+    private String location = "user-images";
 
 }
