@@ -1,6 +1,7 @@
 package net.oasisgames.nexus.resources;
 
 import lombok.RequiredArgsConstructor;
+import net.oasisgames.nexus.dto.DirectoryEntryDto;
 import net.oasisgames.nexus.services.DirectoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,6 +16,8 @@ public class DirectoryResource {
 
     private final DirectoryService directoryService;
 
-
+    public ResponseEntity<DirectoryEntryDto> getDirectory() {
+        return null;
+    }
 
 }
