@@ -34,6 +34,7 @@ public class User {
         this.email = user.getEmail() == null ? this.getEmail() : user.getEmail();
         this.picture = user.getPicture() == null ? this.getPicture() : user.getPicture();
         this.authId = user.getAuthId() == null ? this.getAuthId() : user.getAuthId();
+        this.useFilePicture = user.getUseFilePicture() == null ? this.getUseFilePicture() : user.getUseFilePicture();
         this.card = this.card.update(user.getCard());
         return this;
     }
