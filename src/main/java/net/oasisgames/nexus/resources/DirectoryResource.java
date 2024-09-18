@@ -1,12 +1,11 @@
 package net.oasisgames.nexus.resources;
 
 import lombok.RequiredArgsConstructor;
-import net.oasisgames.nexus.dto.DirectoryEntryDto;
+import net.oasisgames.nexus.dto.UserDto;
 import net.oasisgames.nexus.services.DirectoryService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,8 +15,10 @@ public class DirectoryResource {
 
     private final DirectoryService directoryService;
 
-    public ResponseEntity<DirectoryEntryDto> getDirectory() {
-        return null;
+    @GetMapping("/cards")
+    public ResponseEntity<Page<UserDto>> getDirectory(@RequestParam(defaultValue = "0") int page,
+                                                      @RequestParam(defaultValue = "10") int size) {
+        return ResponseEntity.ok().body(directoryService.getUsers(page, size));
     }
 
 }
