@@ -16,9 +16,9 @@ public class DirectoryResource {
     private final DirectoryService directoryService;
 
     @GetMapping("/cards")
-    public ResponseEntity<Page<UserDto>> getDirectory(@RequestParam(defaultValue = "0") int page,
+    public ResponseEntity<Page<UserDto>> getDirectory(@RequestParam(defaultValue = "0") int pageNo,
                                                       @RequestParam(defaultValue = "10") int size) {
-        return ResponseEntity.ok().body(directoryService.getUsers(page, size));
+        return ResponseEntity.ok().body(directoryService.getUsers(pageNo, size));
     }
 
 }
