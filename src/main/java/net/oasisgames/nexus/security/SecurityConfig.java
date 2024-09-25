@@ -22,6 +22,7 @@ public class SecurityConfig {
             requests.requestMatchers("api/home/*").permitAll();
             requests.requestMatchers("api/account/*").authenticated();
             requests.requestMatchers("api/account/*/*").authenticated();
+            requests.requestMatchers("api/directory/*").authenticated();
             requests.requestMatchers("api/dev/*").authenticated();
         });
         http.oauth2ResourceServer(oauth2 -> oauth2
